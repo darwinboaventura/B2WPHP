@@ -1,6 +1,6 @@
 # B2WPHP
 
-O teste foi desenvolvido usando o PHP. 
+O teste foi desenvolvido usando o PHP 5.6.25. 
 
 No arquivo index.php altere o valor da constante "URL_IMAGES_APP" para o endereço da pasta de imagens no servidor.
 
