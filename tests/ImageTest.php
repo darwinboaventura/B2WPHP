@@ -7,7 +7,9 @@
 		}
 
 		public function testShouldReturn1() {
-			$this->assertEquals(1, $this->Image->imageAlreadySave('./images/b737_1.jpg'));
+			$expect = file_exists('./images/b737_1.jpg');
+
+			$this->assertEquals($expect, $this->Image->imageAlreadySave('./images/b737_1.jpg'));
 		}
 
 		public function testShouldReturnNull() {
