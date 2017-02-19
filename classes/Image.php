@@ -2,10 +2,12 @@
 	require_once('./classes/ImageResize.php');
 
 	class Image {
+		// Verifica se a imagem existe e retorna TRUE ou FALSE
 		public function imageAlreadySave($image) {
 			return file_exists($image);
 		}
 
+		// Pegar as imagens da URL, salva na pasta imagens e me retorna um array com o nome das imagens
 		public function getImages() {
 			$json =  file_get_contents('http://54.152.221.29/images.json');
 			$obj = json_decode($json);
@@ -22,6 +24,7 @@
 			return $images;
 		}
 
+		// Gera os crops das imagens nos tamanhos small, medium, large e me retorna um objeto os endereços dos crops mais endereço da imagem original
 		public function cropImages($image, $url) {
 			$file = explode('.', $image);
 			$name = $file[0];
@@ -60,6 +63,7 @@
 			return $final;
 		}
 
+		// Verifica se a imagem já está cadastrada no banco, caso não esteja a salva
 		public function saveImageIntoDB($images, $db) {
 			$document = $db->findOne(array('original' => $images->original));
 
@@ -68,6 +72,7 @@
 			}
 		}
 
+		// Pegar todas as imagens salvas no banco de dados
 		public function getImagesFromDB($db) {
 			$images = $db->find([], ['_id' => false]);
 
