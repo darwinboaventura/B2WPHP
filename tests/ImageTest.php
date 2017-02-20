@@ -4,16 +4,18 @@
 	class ImageTeste extends TestCase {
 		protected function setUp() {
 			$this->Image = new Image();
+			$this->folder = '.' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+			$this->URL_IMAGES_APP = 'http://localhost/B2WPHP/images/';
 		}
 
 		public function testShouldReturn1() {
-			$expect = file_exists('./images/b737_1.jpg');
+			$expect = file_exists($this->folder . 'b737_1.jpg');
 
-			$this->assertEquals($expect, $this->Image->imageAlreadySave('./images/b737_1.jpg'));
+			$this->assertEquals($expect, $this->Image->imageAlreadySave($this->folder . 'b737_1.jpg'));
 		}
 
 		public function testShouldReturnNull() {
-			$this->assertEquals(false, $this->Image->imageAlreadySave('./images/darwin.jpg'));
+			$this->assertEquals(false, $this->Image->imageAlreadySave($this->folder . 'darwin.jpg'));
 		}
 
 		public function testShouldReturnImagesFromURL() {
@@ -24,12 +26,12 @@
 
 		public function testShouldGerenateCrops() {
 			$expect = new stdClass();
-			$expect->original = 'http://localhost/b2w/images/b737_5.jpg';
-			$expect->small = 'http://localhost/b2w/images/b737_5_320x240.jpg';
-			$expect->medium = 'http://localhost/b2w/images/b737_5_384x288.jpg';
-			$expect->large = 'http://localhost/b2w/images/b737_5_640x480.jpg';
+			$expect->original = $this->URL_IMAGES_APP . 'b737_5.jpg';
+			$expect->small = $this->URL_IMAGES_APP . 'b737_5_320x240.jpg';
+			$expect->medium = $this->URL_IMAGES_APP . 'b737_5_384x288.jpg';
+			$expect->large = $this->URL_IMAGES_APP . 'b737_5_640x480.jpg';
 
-			$this->assertEquals($expect, $this->Image->cropImages('b737_5.jpg', 'http://localhost/b2w/images/'));
+			$this->assertEquals($expect, $this->Image->cropImages('b737_5.jpg', $this->URL_IMAGES_APP . ''));
 		}
 	}
 ?>

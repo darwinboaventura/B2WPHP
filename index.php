@@ -2,7 +2,7 @@
 	require_once('./classes/Image.php');
 
 	// Consts Application
-	define('URL_IMAGES_APP', 'http://localhost/b2w/images/');
+	define('URL_IMAGES_APP', 'http://localhost/B2WPHP/images/');
 
 	// MongoDB Connection
 	$connection = new MongoClient();
